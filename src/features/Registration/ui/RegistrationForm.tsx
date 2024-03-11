@@ -18,8 +18,13 @@ export const RegistrationForm = () => {
         <Input size="large" placeholder="Name" className={styles.input} />
         <Input size="large" placeholder="Surname" className={styles.input} />
         <Input size="large" placeholder="Email" className={styles.input} />
-        <Input size="large" placeholder="Password" className={styles.input} />
-        <Input size="large" placeholder="Confirm password" type="email" className={styles.input} />
+        <Input.Password size="large" placeholder="Password" className={styles.input} />
+        <Input.Password
+          size="large"
+          placeholder="Confirm password"
+          type="email"
+          className={styles.input}
+        />
         <div className={styles.btnContainer}>
           <CustomButton
             text="Sign in"
