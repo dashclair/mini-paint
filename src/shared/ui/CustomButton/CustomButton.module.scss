@@ -1,0 +1,13 @@
+.btn {
+  &:hover {
+    background-color: gray;
+  }
+  
+  &:active {
+    background-color: gray;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
