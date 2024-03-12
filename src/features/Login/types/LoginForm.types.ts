@@ -1,6 +1,6 @@
-import { LoginInput } from './LoginInput.types';
+import { LoginInputProps } from './LoginInput.types';
 
 export interface LoginFormProps {
-  handleSubmitForm: (data: LoginInput) => void;
+  handleSubmitForm: (data: LoginInputProps) => void;
   handleRegistration: () => void;
 }

@@ -1,12 +1,12 @@
 import { AuthFormContainer, CustomButton } from '../../../shared/ui';
 import { LoginFormProps } from '../types/LoginForm.types';
-import { LoginInput } from '../types/LoginInput.types';
+import { LoginInputProps } from '../types/LoginInput.types';
 import { Input } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
 import styles from './LoginForm.module.scss';
 
 export const LoginForm = ({ handleSubmitForm, handleRegistration }: LoginFormProps) => {
-  const { control, handleSubmit } = useForm<LoginInput>();
+  const { control, handleSubmit } = useForm<LoginInputProps>();
 
   return (
     <AuthFormContainer>

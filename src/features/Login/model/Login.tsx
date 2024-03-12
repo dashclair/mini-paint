@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import { RouteNames } from '../../../shared/router/routeNames';
+import { ROUTE_NAMES } from '../../../shared/router/routeNames';
 import { LoginForm } from '../ui/LoginForm';
-import { LoginInput } from '../types/LoginInput.types';
+import { LoginInputProps } from '../types/LoginInput.types';
 
 export const Login = () => {
   const navigate = useNavigate();
 
   const handleRegistration = () => {
-    navigate(RouteNames.SIGNUP);
+    navigate(ROUTE_NAMES.SIGNUP);
   };
 
-  const handleSubmitForm = (data: LoginInput) => {
+  const handleSubmitForm = (data: LoginInputProps) => {
     console.log(data);
   };
 
