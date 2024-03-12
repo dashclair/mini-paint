@@ -1,29 +1,65 @@
 import { Input } from 'antd';
 import { AuthFormContainer, CustomButton } from '../../../shared/ui';
+import { Controller, useForm } from 'react-hook-form';
+import { RegistrationFormProps } from '../types/RegistrationForm.types';
+import { RegistrationInputProps } from '../types/RegistrationInput.types';
+
 import styles from './RegistrationForm.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { RouteNames } from '../../../shared/router/routeNames';
 
-export const RegistrationForm = () => {
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    navigate(RouteNames.LOGIN);
-  };
+export const RegistrationForm = ({
+  handleSubmitRegistration,
+  handleLogin,
+}: RegistrationFormProps) => {
+  const { control, handleSubmit } = useForm<RegistrationInputProps>();
 
   return (
     <AuthFormContainer>
       <h1 className={styles.title}>Registration</h1>
-      <form className={styles.form}>
-        <Input size="large" placeholder="Name" className={styles.input} />
-        <Input size="large" placeholder="Surname" className={styles.input} />
-        <Input size="large" placeholder="Email" className={styles.input} />
-        <Input.Password size="large" placeholder="Password" className={styles.input} />
-        <Input.Password
-          size="large"
-          placeholder="Confirm password"
-          type="email"
-          className={styles.input}
+      <form className={styles.form} onSubmit={handleSubmit(handleSubmitRegistration)}>
+        <Controller
+          name="name"
+          control={control}
+          render={({ field }) => (
+            <Input size="large" placeholder="Name" className={styles.input} {...field} />
+          )}
+        />
+        <Controller
+          name="surname"
+          control={control}
+          render={({ field }) => (
+            <Input size="large" placeholder="Surname" className={styles.input} {...field} />
+          )}
+        />
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <Input size="large" placeholder="Email" className={styles.input} {...field} />
+          )}
+        />
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <Input.Password
+              size="large"
+              placeholder="Password"
+              className={styles.input}
+              {...field}
+            />
+          )}
+        />
+        <Controller
+          name="confirmPassword"
+          control={control}
+          render={({ field }) => (
+            <Input.Password
+              size="large"
+              placeholder="Confirm password"
+              className={styles.input}
+              {...field}
+            />
+          )}
         />
         <div className={styles.btnContainer}>
           <CustomButton
@@ -37,6 +73,7 @@ export const RegistrationForm = () => {
             className={`${styles.btn} ${styles.btn_primary}`}
             text="Register"
             size="large"
+            htmlType="submit"
           />
         </div>
       </form>
