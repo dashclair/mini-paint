@@ -1,10 +1,10 @@
-import { Login } from '../../features/Login';
+import { LoginForm } from '../../features/Login';
 import { AuthLayout } from '../../shared/ui';
 
 export const LoginPage = () => {
   return (
     <AuthLayout>
-      <Login />
+      <LoginForm />
     </AuthLayout>
   );
 };

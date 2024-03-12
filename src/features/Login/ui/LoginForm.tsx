@@ -1,12 +1,23 @@
 import { AuthFormContainer, CustomButton } from '../../../shared/ui';
-import { LoginFormProps } from '../types/LoginForm.types';
 import { LoginInputProps } from '../types/LoginInput.types';
 import { Input } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { ROUTE_NAMES } from '../../../shared/router/routeNames';
+import { handleLogin } from '../helpers/signIn';
 import styles from './LoginForm.module.scss';
 
-export const LoginForm = ({ handleSubmitForm, handleRegistration }: LoginFormProps) => {
+export const LoginForm = () => {
   const { control, handleSubmit } = useForm<LoginInputProps>();
+  const navigate = useNavigate();
+
+  const handleRegistration = () => {
+    navigate(ROUTE_NAMES.SIGNUP);
+  };
+
+  const handleSubmitForm = (data: LoginInputProps) => {
+    handleLogin(data.email, data.password);
+  };
 
   return (
     <AuthFormContainer>
