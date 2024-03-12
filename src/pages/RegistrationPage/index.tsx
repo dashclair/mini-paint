@@ -1,10 +1,10 @@
-import { CreateAccount } from '../../features/Registration';
+import { RegistrationForm } from '../../features/Registration';
 import { AuthLayout } from '../../shared/ui';
 
 export const RegistrationPage = () => {
   return (
     <AuthLayout>
-      <CreateAccount />
+      <RegistrationForm />
     </AuthLayout>
   );
 };

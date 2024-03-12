@@ -1,16 +1,26 @@
 import { Input } from 'antd';
 import { AuthFormContainer, CustomButton } from '../../../shared/ui';
 import { Controller, useForm } from 'react-hook-form';
-import { RegistrationFormProps } from '../types/RegistrationForm.types';
 import { RegistrationInputProps } from '../types/RegistrationInput.types';
-
+import { useNavigate } from 'react-router-dom';
+import { ROUTE_NAMES } from '../../../shared/router/routeNames';
+import { handleSignUp } from '../helpers/signUp';
 import styles from './RegistrationForm.module.scss';
 
-export const RegistrationForm = ({
-  handleSubmitRegistration,
-  handleLogin,
-}: RegistrationFormProps) => {
+export const RegistrationForm = () => {
   const { control, handleSubmit } = useForm<RegistrationInputProps>();
+
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate(ROUTE_NAMES.LOGIN);
+  };
+
+  const handleSubmitRegistration = (data: RegistrationInputProps) => {
+    console.log(data);
+
+    handleSignUp(data.email, data.password);
+  };
 
   return (
     <AuthFormContainer>

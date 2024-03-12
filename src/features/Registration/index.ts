@@ -1,1 +1,1 @@
-export { CreateAccount } from './model/CreateAccount';
+export { RegistrationForm } from './ui/RegistrationForm';
