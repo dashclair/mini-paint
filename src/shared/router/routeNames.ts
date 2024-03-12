@@ -1,4 +1,4 @@
-export const RouteNames = {
+export const ROUTE_NAMES = {
   HOME: '/',
   LOGIN: '/login',
   SIGNUP: '/signup',

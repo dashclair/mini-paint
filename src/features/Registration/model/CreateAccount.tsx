@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { RegistrationForm } from '../ui/RegistrationForm';
-import { RouteNames } from '../../../shared/router/routeNames';
+import { ROUTE_NAMES } from '../../../shared/router/routeNames';
 import { RegistrationInputProps } from '../types/RegistrationInput.types';
 
 export const CreateAccount = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate(RouteNames.LOGIN);
+    navigate(ROUTE_NAMES.LOGIN);
   };
 
   const handleSubmitRegistration = (data: RegistrationInputProps) => {
