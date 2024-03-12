@@ -1,21 +1,36 @@
-import { useNavigate } from 'react-router-dom';
 import { AuthFormContainer, CustomButton } from '../../../shared/ui';
-import styles from './LoginForm.module.scss';
+import { LoginFormProps } from '../types/LoginForm.types';
+import { LoginInput } from '../types/LoginInput.types';
 import { Input } from 'antd';
-import { RouteNames } from '../../../shared/router/routeNames';
+import { Controller, useForm } from 'react-hook-form';
+import styles from './LoginForm.module.scss';
 
-export const LoginForm = () => {
-  const navigate = useNavigate();
+export const LoginForm = ({ handleSubmitForm, handleRegistration }: LoginFormProps) => {
+  const { control, handleSubmit } = useForm<LoginInput>();
 
-  const handleRegistration = () => {
-    navigate(RouteNames.SIGNUP);
-  };
   return (
     <AuthFormContainer>
       <h1 className={styles.title}>Sign in</h1>
-      <form className={styles.form}>
-        <Input size="large" placeholder="Email" className={styles.input} />
-        <Input.Password size="large" placeholder="Password" className={styles.input} />
+      <form className={styles.form} onSubmit={handleSubmit(handleSubmitForm)}>
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <Input size="large" placeholder="Email" className={styles.input} {...field} />
+          )}
+        />
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <Input.Password
+              size="large"
+              placeholder="Password"
+              className={styles.input}
+              {...field}
+            />
+          )}
+        />
         <div className={styles.btnContainer}>
           <CustomButton
             text="Create account"
@@ -28,7 +43,7 @@ export const LoginForm = () => {
             className={`${styles.btn} ${styles.btn_primary}`}
             text="Sign in"
             size="large"
-            onClick={() => {}}
+            htmlType="submit"
           />
         </div>
       </form>
