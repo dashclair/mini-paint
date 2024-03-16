@@ -4,42 +4,30 @@ import { Controller, useForm } from 'react-hook-form';
 import { RegistrationInputProps } from '../types/RegistrationInput.types';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_NAMES } from '../../../shared/router/routeNames';
-import { handleSignUp } from '../helpers/signUp';
 import styles from './RegistrationForm.module.scss';
+import { signUp } from '../../../entities/Auth/helpers/authServices';
 
 export const RegistrationForm = () => {
   const { control, handleSubmit } = useForm<RegistrationInputProps>();
-
   const navigate = useNavigate();
 
   const handleLogin = () => {
     navigate(ROUTE_NAMES.LOGIN);
   };
 
-  const handleSubmitRegistration = (data: RegistrationInputProps) => {
-    console.log(data);
-
-    handleSignUp(data.email, data.password);
+  const handleSubmitRegistration = async (data: RegistrationInputProps) => {
+    try {
+      await signUp(data);
+      navigate(ROUTE_NAMES.HOME);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <AuthFormContainer>
       <h1 className={styles.title}>Registration</h1>
       <form className={styles.form} onSubmit={handleSubmit(handleSubmitRegistration)}>
-        <Controller
-          name="name"
-          control={control}
-          render={({ field }) => (
-            <Input size="large" placeholder="Name" className={styles.input} {...field} />
-          )}
-        />
-        <Controller
-          name="surname"
-          control={control}
-          render={({ field }) => (
-            <Input size="large" placeholder="Surname" className={styles.input} {...field} />
-          )}
-        />
         <Controller
           name="email"
           control={control}

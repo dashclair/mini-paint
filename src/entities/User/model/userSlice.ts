@@ -8,12 +8,12 @@ export interface userDataProps {
 
 export interface userStateProps {
   userData: userDataProps | null;
-  //   isAuth: boolean;
+  isAuth: boolean;
 }
 
 const initialState: userStateProps = {
   userData: null,
-  //   isAuth: false,
+  isAuth: false,
 };
 
 export const userSlice = createSlice({
@@ -22,15 +22,17 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, { payload }) => {
       state.userData = payload;
+      state.isAuth = true;
     },
     setUnAuth: (state) => {
       state.userData = null;
+      state.isAuth = false;
     },
   },
 });
 
 export const { setUser, setUnAuth } = userSlice.actions;
 
-export const selectUser = (state: RootState) => state.user.userData;
+export const selectUser = (state: RootState) => state.user;
 
 export default userSlice.reducer;

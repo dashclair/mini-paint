@@ -4,43 +4,24 @@ import { Input } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_NAMES } from '../../../shared/router/routeNames';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import styles from './LoginForm.module.scss';
-import { useAppDispatch } from '../../../shared/model/hooks';
-import { setUnAuth, setUser } from '../../../entities/User/model/userSlice';
+import { signIn } from '../../../entities/Auth/helpers/authServices';
 
 export const LoginForm = () => {
   const { control, handleSubmit } = useForm<LoginInputProps>();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const auth = getAuth();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log('user', user);
-      const uid = user.uid;
-      dispatch(setUser({ email: user.email, id: uid }));
-    } else {
-      dispatch(setUnAuth());
+  const handleSubmitForm = async ({ email, password }: LoginInputProps) => {
+    try {
+      await signIn({ email, password });
+      navigate(ROUTE_NAMES.HOME);
+    } catch (err) {
+      console.log(err);
     }
-  });
+  };
 
   const handleRegistration = () => {
     navigate(ROUTE_NAMES.SIGNUP);
-  };
-
-  const handleSubmitForm = ({ email, password }: LoginInputProps) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log('error code', errorCode);
-        console.log('error message', errorMessage);
-      });
   };
 
   return (
