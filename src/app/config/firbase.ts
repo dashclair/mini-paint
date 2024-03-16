@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_apiKey,
@@ -9,5 +10,5 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_appId,
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
