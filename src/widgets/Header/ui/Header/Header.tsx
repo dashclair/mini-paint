@@ -1,4 +1,4 @@
-import { selectUser } from '../../../../entities/User/model/userSlice';
+import { selectUser } from '../../../../entities/User';
 import { SignOutButton } from '../../../../features/SignOut';
 import { useAppSelector } from '../../../../shared/model/hooks';
 import { ROUTE_NAMES } from '../../../../shared/router/routeNames';
