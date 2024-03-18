@@ -9,7 +9,7 @@ import { AuthGuard } from './AuthGuard';
 import { MainPage } from '../../pages/MainPage';
 import { LoginPage, RegistrationPage } from '../../pages';
 import { PaintingPage } from '../../pages/PaintingPage';
-import { AuthProvider } from '../../entities/Auth/context/AuthProvider';
+import { AuthProvider } from '../../entities/Auth';
 
 export const AppRouter = () => {
   const router = createBrowserRouter(
