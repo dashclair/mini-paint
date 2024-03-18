@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTE_NAMES } from '../../../shared/router/routeNames';
 import styles from './RegistrationForm.module.scss';
 import { emailValidationRules, passwordValidationRules, signUp } from '../../../entities/Auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const RegistrationForm = () => {
   const {
@@ -26,7 +28,7 @@ export const RegistrationForm = () => {
       await signUp(data);
       navigate(ROUTE_NAMES.HOME);
     } catch (error) {
-      console.log(error);
+      toast.error('This email is used');
     }
   };
 
@@ -42,6 +44,7 @@ export const RegistrationForm = () => {
 
   return (
     <AuthFormContainer>
+      <ToastContainer />
       <h1 className={styles.title}>Registration</h1>
       <Form className={styles.form} onFinish={handleSubmit(handleSubmitRegistration)}>
         <Controller

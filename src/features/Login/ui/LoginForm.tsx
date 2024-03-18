@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTE_NAMES } from '../../../shared/router/routeNames';
 import { emailValidationRules, passwordValidationRules, signIn } from '../../../entities/Auth';
 import styles from './LoginForm.module.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const LoginForm = () => {
   const {
@@ -19,8 +21,8 @@ export const LoginForm = () => {
     try {
       await signIn({ email, password });
       navigate(ROUTE_NAMES.HOME);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      toast.error(`Something went wrong. Please check the credentials.`);
     }
   };
 
@@ -30,6 +32,7 @@ export const LoginForm = () => {
 
   return (
     <AuthFormContainer>
+      <ToastContainer />
       <h1 className={styles.title}>Sign in</h1>
       <Form className={styles.form} onFinish={handleSubmit(handleSubmitForm)}>
         <Controller
