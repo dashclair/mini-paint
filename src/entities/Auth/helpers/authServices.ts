@@ -5,9 +5,7 @@ import { RegistrationInputProps } from '../../../features/Registration/types/Reg
 
 export const signIn = async ({ email, password }: LoginInputProps) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    console.log(user);
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     console.log('error code', error);
   }
@@ -15,8 +13,7 @@ export const signIn = async ({ email, password }: LoginInputProps) => {
 
 export const signUp = async ({ email, password }: RegistrationInputProps) => {
   try {
-    const message = await createUserWithEmailAndPassword(auth, email, password);
-    return console.log(message);
+    await createUserWithEmailAndPassword(auth, email, password);
   } catch (error) {
     return console.error(error);
   }
