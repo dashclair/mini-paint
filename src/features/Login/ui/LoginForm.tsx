@@ -1,13 +1,16 @@
-import { AuthFormContainer, CustomButton } from '../../../shared/ui';
-import { LoginInputProps } from '../types/LoginInput.types';
-import { Form, Input } from 'antd';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { Form, Input } from 'antd';
+import { selectUser } from '../../../entities/User';
+import { AuthFormContainer, CustomButton } from '../../../shared/ui';
+import { LoginInputProps } from '../types/LoginInput.types';
 import { ROUTE_NAMES } from '../../../shared/router/routeNames';
 import { emailValidationRules, passwordValidationRules, signIn } from '../../../entities/Auth';
-import styles from './LoginForm.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
+import { useAppSelector } from '../../../shared/model/hooks';
 import 'react-toastify/dist/ReactToastify.css';
+import styles from './LoginForm.module.scss';
 
 export const LoginForm = () => {
   const {
@@ -15,12 +18,22 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginInputProps>();
+
   const navigate = useNavigate();
+  const user = useAppSelector(selectUser);
+
+  const isAuth = user.isAuth;
+
+  useEffect(() => {
+    if (isAuth) {
+      console.log('navigate');
+      navigate(ROUTE_NAMES.HOME);
+    }
+  }, [isAuth]);
 
   const handleSubmitForm = async ({ email, password }: LoginInputProps) => {
     try {
       await signIn({ email, password });
-      navigate(ROUTE_NAMES.HOME);
     } catch (error) {
       toast.error(`Something went wrong. Please check the credentials.`);
     }

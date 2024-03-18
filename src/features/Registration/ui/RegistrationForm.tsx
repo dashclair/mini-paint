@@ -1,14 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Form, Input } from 'antd';
-import { AuthFormContainer, CustomButton } from '../../../shared/ui';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { RegistrationInputProps } from '../types/RegistrationInput.types';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE_NAMES } from '../../../shared/router/routeNames';
-import styles from './RegistrationForm.module.scss';
-import { emailValidationRules, passwordValidationRules, signUp } from '../../../entities/Auth';
 import { ToastContainer, toast } from 'react-toastify';
+import { Form, Input } from 'antd';
+import { selectUser } from '../../../entities/User';
+import { emailValidationRules, passwordValidationRules, signUp } from '../../../entities/Auth';
+import { RegistrationInputProps } from '../types/RegistrationInput.types';
+import { ROUTE_NAMES } from '../../../shared/router/routeNames';
+import { AuthFormContainer, CustomButton } from '../../../shared/ui';
+import { useAppSelector } from '../../../shared/model/hooks';
 import 'react-toastify/dist/ReactToastify.css';
+import styles from './RegistrationForm.module.scss';
 
 export const RegistrationForm = () => {
   const {
@@ -17,7 +19,18 @@ export const RegistrationForm = () => {
     formState: { errors },
     watch,
   } = useForm<RegistrationInputProps>();
+
   const navigate = useNavigate();
+  const user = useAppSelector(selectUser);
+
+  const isAuth = user.isAuth;
+
+  useEffect(() => {
+    if (isAuth) {
+      console.log('navigate');
+      navigate(ROUTE_NAMES.HOME);
+    }
+  }, [isAuth]);
 
   const handleLogin = () => {
     navigate(ROUTE_NAMES.LOGIN);
@@ -81,7 +94,7 @@ export const RegistrationForm = () => {
         <Controller
           name="confirmPassword"
           control={control}
-          rules={confirmPasswordValidationRules as any}
+          rules={confirmPasswordValidationRules}
           render={({ field }) => (
             <Form.Item
               validateStatus={errors.confirmPassword ? 'error' : ''}
