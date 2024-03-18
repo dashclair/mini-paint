@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import { ROUTE_NAMES } from '../../shared/router/routeNames';
-import { AuthContext } from '../../entities/Auth/context/AuthProvider';
+import { useAuth } from '../../entities/Auth';
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 export const AuthGuard = ({ children }: ProtectedRouteProps) => {
-  const currentUser = useContext(AuthContext);
+  const { currentUser } = useAuth();
 
   if (currentUser) {
     return <>{children}</>;
