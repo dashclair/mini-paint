@@ -9,7 +9,6 @@ import { AuthGuard } from './AuthGuard';
 import { MainPage } from '../../pages/MainPage';
 import { LoginPage, RegistrationPage } from '../../pages';
 import { PaintingPage } from '../../pages/PaintingPage';
-import { AuthProvider } from '../../entities/Auth';
 
 export const AppRouter = () => {
   const router = createBrowserRouter(
@@ -37,9 +36,5 @@ export const AppRouter = () => {
     ),
   );
 
-  return (
-    <AuthProvider>
-      <RouterProvider router={router} />;
-    </AuthProvider>
-  );
+  return <RouterProvider router={router} />;
 };
