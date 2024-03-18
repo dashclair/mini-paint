@@ -1,10 +1,6 @@
-import { SignOutButton } from '../../features/SignOut';
+import { useAuth } from '../../entities/Auth/model/useAuth';
 
 export const MainPage = () => {
-  return (
-    <div>
-      Main page
-      <SignOutButton />
-    </div>
-  );
+  useAuth();
+  return <div>Main page</div>;
 };

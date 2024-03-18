@@ -1,0 +1,29 @@
+import { selectUser } from '../../../../entities/User/model/userSlice';
+import { SignOutButton } from '../../../../features/SignOut';
+import { useAppSelector } from '../../../../shared/model/hooks';
+import { ROUTE_NAMES } from '../../../../shared/router/routeNames';
+import styles from './Header.module.scss';
+
+export const Header = () => {
+  const user = useAppSelector(selectUser);
+  const path = location.pathname;
+  const hideHeader = path === ROUTE_NAMES.LOGIN || path === ROUTE_NAMES.SIGNUP;
+
+  const isAuth = user.isAuth;
+
+  if (hideHeader) {
+    return null;
+  }
+
+  if (!isAuth) {
+    return null;
+  }
+
+  return (
+    <>
+      <div className={styles.container}>
+        <SignOutButton />
+      </div>
+    </>
+  );
+};
