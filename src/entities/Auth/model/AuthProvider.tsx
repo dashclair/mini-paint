@@ -1,21 +1,23 @@
 import { createContext, useEffect, useState } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../app/config/firbase';
-import { useAppDispatch } from '../../../shared/model/hooks';
-import { setUser } from '../../User/model/userSlice';
 import { AuthProviderProps } from './AuthProvider.types';
+import { LayoutLoader } from '../ui/LayoutLoader/LayoutLoader';
 
-export const AuthContext = createContext<unknown>(null);
+export const AuthContext = createContext<IContextProps>({ currentUser: null, pending: true });
+
+interface IContextProps {
+  currentUser: User | null;
+  pending: boolean;
+}
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [pending, setPending] = useState(true);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      dispatch(setUser({ id: user?.uid, email: user?.email }));
       setPending(false);
     });
   }, []);
@@ -23,8 +25,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   console.log('current user', currentUser);
 
   if (pending) {
-    return <div>...Loading</div>;
+    return <LayoutLoader />;
   }
 
-  return <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ currentUser, pending }}>{children}</AuthContext.Provider>;
 };
