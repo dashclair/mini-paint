@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { selectUser } from '../../../../entities/User';
 import { SignOutButton } from '../../../../features/SignOut';
 import { useAppSelector } from '../../../../shared/model/hooks';
@@ -22,6 +23,12 @@ export const Header = () => {
   return (
     <>
       <div className={styles.container}>
+        <Link className={styles.link} to={ROUTE_NAMES.HOME}>
+          Home
+        </Link>
+        <Link className={styles.link} to={ROUTE_NAMES.PAINTER}>
+          Painter
+        </Link>
         <SignOutButton />
       </div>
     </>
