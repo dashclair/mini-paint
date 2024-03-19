@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Form, Input } from 'antd';
 import { selectUser } from '../../../entities/User';
@@ -25,12 +24,10 @@ export const RegistrationForm = () => {
 
   const isAuth = user.isAuth;
 
-  useEffect(() => {
-    if (isAuth) {
-      console.log('navigate');
-      navigate(ROUTE_NAMES.HOME);
-    }
-  }, [isAuth]);
+  if (isAuth) {
+    console.log('navigate');
+    return <Navigate to={ROUTE_NAMES.HOME} />;
+  }
 
   const handleLogin = () => {
     navigate(ROUTE_NAMES.LOGIN);
