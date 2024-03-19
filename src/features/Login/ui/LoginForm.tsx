@@ -1,15 +1,16 @@
 import { Controller, useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Form, Input } from 'antd';
-import { selectUser } from '../../../entities/User';
-import { AuthFormContainer, CustomButton } from '../../../shared/ui';
+import { selectUser } from 'entities/User';
+import { AuthFormContainer, CustomButton } from 'shared/ui';
 import { LoginInputProps } from '../types/LoginInput.types';
-import { ROUTE_NAMES } from '../../../shared/router/routeNames';
-import { emailValidationRules, passwordValidationRules, signIn } from '../../../entities/Auth';
+import { ROUTE_NAMES } from 'shared/router/routeNames';
 import { ToastContainer, toast } from 'react-toastify';
-import { useAppSelector } from '../../../shared/model/hooks';
+import { useAppSelector } from 'shared/model/hooks';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './LoginForm.module.scss';
+import { signIn } from '../lib/signIn';
+import { emailValidationRules, passwordValidationRules } from 'shared/helpers';
 
 export const LoginForm = () => {
   const {
