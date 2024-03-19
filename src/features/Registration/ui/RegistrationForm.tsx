@@ -110,19 +110,16 @@ export const RegistrationForm = () => {
           )}
         />
         <div className={styles.btnContainer}>
-          <CustomButton
-            text="Sign in"
-            type="default"
-            className={styles.btn}
-            size="large"
-            onClick={handleLogin}
-          />
+          <CustomButton type="default" className={styles.btn} size="large" onClick={handleLogin}>
+            Sign in
+          </CustomButton>
           <CustomButton
             className={`${styles.btn} ${styles.btn_primary}`}
-            text="Register"
             size="large"
             htmlType="submit"
-          />
+          >
+            Register
+          </CustomButton>
         </div>
       </Form>
     </AuthFormContainer>
