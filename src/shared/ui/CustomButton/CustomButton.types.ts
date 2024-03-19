@@ -1,5 +1,6 @@
 import { ButtonProps } from 'antd';
+import { ReactNode } from 'react';
 
 export interface CustomButtonProps extends ButtonProps {
-  text: string;
+  children: ReactNode;
 }

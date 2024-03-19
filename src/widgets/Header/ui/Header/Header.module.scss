@@ -1,0 +1,18 @@
+.container {
+  box-shadow: -4px 5px 20px 5px hsla(210, 35%, 87%, 0.555);
+  width: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap:35px;
+}
+
+.link {
+  color: #213547;
+  font-weight: 400;
+  font-style: normal;
+  
+}

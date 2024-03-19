@@ -1,22 +1,12 @@
-import { CustomButton } from '../../../shared/ui';
-import { useAppDispatch } from '../../../shared/model/hooks';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../../app/config/firbase';
-import { setUnAuth } from '../../../entities/User/model/userSlice';
+import { CustomButton } from 'shared/ui';
+import { IconComponent } from 'shared/ui';
+import styles from './SignOutButton.module.scss';
+import { signOutUser } from '../lib/signOutUser';
 
 export const SignOutButton = () => {
-  const dispatch = useAppDispatch();
-
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log('sign out');
-        dispatch(setUnAuth());
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  return <CustomButton type="link" text="sign out" onClick={handleSignOut} />;
+  return (
+    <CustomButton type="link" onClick={signOutUser}>
+      {<IconComponent iconName="exit" className={styles.exitIcon} />}
+    </CustomButton>
+  );
 };

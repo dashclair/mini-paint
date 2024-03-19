@@ -1,14 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Form, Input } from 'antd';
-import { AuthFormContainer, CustomButton } from '../../../shared/ui';
 import { Controller, useForm } from 'react-hook-form';
-import { RegistrationInputProps } from '../types/RegistrationInput.types';
-import { useNavigate } from 'react-router-dom';
-import { ROUTE_NAMES } from '../../../shared/router/routeNames';
-import styles from './RegistrationForm.module.scss';
-import { emailValidationRules, passwordValidationRules, signUp } from '../../../entities/Auth';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { Form, Input } from 'antd';
+import { selectUser } from 'entities/User';
+import { emailValidationRules, passwordValidationRules } from 'shared/helpers';
+import { RegistrationInputProps } from '../types/RegistrationInput.types';
+import { ROUTE_NAMES } from 'shared/router/routeNames';
+import { AuthFormContainer, CustomButton } from 'shared/ui';
+import { useAppSelector } from 'shared/model/hooks';
 import 'react-toastify/dist/ReactToastify.css';
+import styles from './RegistrationForm.module.scss';
+import { signUp } from '../lib/signUp';
 
 export const RegistrationForm = () => {
   const {
@@ -17,7 +19,16 @@ export const RegistrationForm = () => {
     formState: { errors },
     watch,
   } = useForm<RegistrationInputProps>();
+
   const navigate = useNavigate();
+  const user = useAppSelector(selectUser);
+
+  const isAuth = user.isAuth;
+
+  if (isAuth) {
+    console.log('navigate');
+    return <Navigate to={ROUTE_NAMES.HOME} />;
+  }
 
   const handleLogin = () => {
     navigate(ROUTE_NAMES.LOGIN);
@@ -81,7 +92,7 @@ export const RegistrationForm = () => {
         <Controller
           name="confirmPassword"
           control={control}
-          rules={confirmPasswordValidationRules as any}
+          rules={confirmPasswordValidationRules}
           render={({ field }) => (
             <Form.Item
               validateStatus={errors.confirmPassword ? 'error' : ''}
@@ -97,19 +108,16 @@ export const RegistrationForm = () => {
           )}
         />
         <div className={styles.btnContainer}>
-          <CustomButton
-            text="Sign in"
-            type="default"
-            className={styles.btn}
-            size="large"
-            onClick={handleLogin}
-          />
+          <CustomButton type="default" className={styles.btn} size="large" onClick={handleLogin}>
+            Sign in
+          </CustomButton>
           <CustomButton
             className={`${styles.btn} ${styles.btn_primary}`}
-            text="Register"
             size="large"
             htmlType="submit"
-          />
+          >
+            Register
+          </CustomButton>
         </div>
       </Form>
     </AuthFormContainer>

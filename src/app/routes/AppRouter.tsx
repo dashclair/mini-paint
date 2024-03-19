@@ -1,45 +1,30 @@
-import {
-  Route,
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from 'react-router-dom';
-import { ROUTE_NAMES } from '../../shared/router/routeNames';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { AuthGuard } from './AuthGuard';
-import { MainPage } from '../../pages/MainPage';
-import { LoginPage, RegistrationPage } from '../../pages';
-import { PaintingPage } from '../../pages/PaintingPage';
-import { AuthProvider } from '../../entities/Auth';
+import { protectedRoutes } from './protectedRoutes';
+import { publicRoutes } from './publicRoutes';
+import { MainLayout } from 'shared/ui';
+import { Header } from 'widgets/Header';
 
 export const AppRouter = () => {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <>
-        <Route
-          path="/painting"
-          element={
-            <AuthGuard>
-              <PaintingPage />
-            </AuthGuard>
-          }
-        />
-        <Route
-          path={ROUTE_NAMES.HOME}
-          element={
-            <AuthGuard>
-              <MainPage />
-            </AuthGuard>
-          }
-        />
-        <Route path={ROUTE_NAMES.LOGIN} element={<LoginPage />} />
-        <Route path={ROUTE_NAMES.SIGNUP} element={<RegistrationPage />} />
-      </>,
-    ),
-  );
+  const router = createBrowserRouter([
+    {
+      element: (
+        <>
+          <Header />
+          <MainLayout>
+            <Outlet />
+          </MainLayout>
+        </>
+      ),
+      children: [
+        ...publicRoutes,
+        {
+          element: <AuthGuard />,
+          children: protectedRoutes,
+        },
+      ],
+    },
+  ]);
 
-  return (
-    <AuthProvider>
-      <RouterProvider router={router} />;
-    </AuthProvider>
-  );
+  return <RouterProvider router={router} />;
 };

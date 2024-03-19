@@ -1,19 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
-import { ROUTE_NAMES } from '../../shared/router/routeNames';
-import { useAuth } from '../../entities/Auth';
+import { memo } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { ROUTE_NAMES } from 'shared/router/routeNames';
+import { useUser } from 'entities/User';
 
-interface ProtectedRouteProps {
-  children: ReactNode;
-}
+export const AuthGuard = memo(() => {
+  const { isAuth } = useUser();
 
-export const AuthGuard = ({ children }: ProtectedRouteProps) => {
-  const { currentUser } = useAuth();
-
-  if (currentUser) {
-    return <>{children}</>;
+  if (!isAuth) {
+    return <Navigate to={ROUTE_NAMES.LOGIN} replace />;
   }
 
-  return <Navigate to={ROUTE_NAMES.LOGIN} replace />;
-};
+  return <Outlet />;
+});
