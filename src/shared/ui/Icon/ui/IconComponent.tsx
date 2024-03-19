@@ -1,5 +1,5 @@
-import { IconComponentProps } from './IconComponent.types';
-import { iconsMap } from './iconsMap';
+import { IconComponentProps } from '../lib/IconComponent.types';
+import { iconsMap } from '../lib/iconsMap';
 
 export const IconComponent = ({ iconName, ...props }: IconComponentProps) => {
   const Icon = iconsMap[iconName]?.component;
