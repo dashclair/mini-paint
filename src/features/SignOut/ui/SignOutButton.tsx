@@ -1,12 +1,12 @@
 import { CustomButton } from 'shared/ui';
 import { handleSignOut } from 'entities/Auth';
-import styles from './SignOutButton.module.scss';
 import { IconComponent } from 'shared/ui';
+import styles from './SignOutButton.module.scss';
 
 export const SignOutButton = () => {
   return (
-    <CustomButton className={styles.buttonContainer} type="link" onClick={handleSignOut}>
-      {<IconComponent iconName="exit" />}
+    <CustomButton type="link" onClick={handleSignOut}>
+      {<IconComponent iconName="exit" className={styles.exitIcon} />}
     </CustomButton>
   );
 };
