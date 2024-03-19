@@ -2,14 +2,15 @@ import { Controller, useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Form, Input } from 'antd';
-import { selectUser } from '../../../entities/User';
-import { emailValidationRules, passwordValidationRules, signUp } from '../../../entities/Auth';
+import { selectUser } from 'entities/User';
+import { emailValidationRules, passwordValidationRules } from 'shared/helpers';
 import { RegistrationInputProps } from '../types/RegistrationInput.types';
-import { ROUTE_NAMES } from '../../../shared/router/routeNames';
-import { AuthFormContainer, CustomButton } from '../../../shared/ui';
-import { useAppSelector } from '../../../shared/model/hooks';
+import { ROUTE_NAMES } from 'shared/router/routeNames';
+import { AuthFormContainer, CustomButton } from 'shared/ui';
+import { useAppSelector } from 'shared/model/hooks';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './RegistrationForm.module.scss';
+import { signUp } from '../lib/signUp';
 
 export const RegistrationForm = () => {
   const {
