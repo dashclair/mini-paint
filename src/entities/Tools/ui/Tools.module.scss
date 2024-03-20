@@ -1,0 +1,35 @@
+.container {
+  background-color: rgb(234, 240, 248);
+  border-radius: 3px;
+  display: flex;
+  padding: 10px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 5px;
+}
+
+.icon {
+  align-self: center;
+}
+
+.toolsButton {
+  border: 1px solid rgb(41, 51, 86);
+  border-radius: 3px;
+  padding-top: 3px;
+}
+
+.penwidth {
+    border:0 solid rgb(255, 255, 255);
+}
+
+.toolsButton:hover,
+.pen,
+.circle,
+.line,
+.rectangle {
+  background-color: rgb(41, 51, 86);
+  color: white;
+  border-color: rgb(41, 51, 86);
+}
