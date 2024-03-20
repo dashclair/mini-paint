@@ -43,8 +43,8 @@ export const Canvas = () => {
 
   return (
     <canvas
-      width={500}
-      height={600}
+      width={600}
+      height={450}
       className={styles.canvas}
       onMouseDown={startDrawing}
       onMouseUp={endDrawing}
