@@ -6,10 +6,18 @@ import { useState } from 'react';
 export const PaintingPage = () => {
   const [tool, setTool] = useState<string | null>(null);
   const [width, setWidth] = useState<string>('3');
+  const [color, setColor] = useState('#aabbcc');
+
   return (
     <div className={styles.container}>
-      <Tools width={width} setWidth={setWidth} setTool={setTool} />
-      <Canvas width={width} tool={tool} />
+      <Tools
+        width={width}
+        setWidth={setWidth}
+        setTool={setTool}
+        color={color}
+        setColor={setColor}
+      />
+      <Canvas color={color} width={width} tool={tool} />
     </div>
   );
 };
