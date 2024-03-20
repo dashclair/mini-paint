@@ -3,9 +3,10 @@ import { MouseEvent, useEffect, useRef, useState } from 'react';
 export interface UsePaintHookProps {
   width: string;
   tool: string | null;
+  color: string;
 }
 
-export const usePaint = ({ width, tool }: UsePaintHookProps) => {
+export const usePaint = ({ width, tool, color }: UsePaintHookProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -24,7 +25,7 @@ export const usePaint = ({ width, tool }: UsePaintHookProps) => {
   }, []);
 
   const handleDrawCircle = (x: number, y: number) => {
-    // contextRef.current!.strokeStyle = color;
+    contextRef.current!.strokeStyle = color;
     context!.lineWidth = +width;
     const CircleWidth = x - previousPosition.x;
     const CircleHeight = y - previousPosition.y;
@@ -32,14 +33,14 @@ export const usePaint = ({ width, tool }: UsePaintHookProps) => {
     context!.beginPath();
     context!.arc(previousPosition.x, previousPosition.y, radius, 0, 2 * Math.PI, false);
     context!.stroke();
-    // contextRef.current!.fillStyle = color;
+    contextRef.current!.fillStyle = color;
     context!.fill();
   };
 
   const handleDrawLine = (x: number, y: number) => {
     contextRef.current!.beginPath();
     contextRef.current!.lineJoin = 'round';
-    // contextRef.current!.strokeStyle = color;
+    contextRef.current!.strokeStyle = color;
     contextRef.current!.lineWidth = +width;
     contextRef.current!.moveTo(previousPosition.x, previousPosition.y);
     contextRef.current!.lineTo(x, y);
@@ -52,7 +53,7 @@ export const usePaint = ({ width, tool }: UsePaintHookProps) => {
     }
 
     contextRef.current?.beginPath();
-    // context!.strokeStyle = color;
+    context!.strokeStyle = color;
     contextRef.current!.lineWidth = +width;
     contextRef.current!.lineJoin = 'round';
     contextRef.current!.moveTo(previousPosition.x, previousPosition.y);
@@ -64,12 +65,12 @@ export const usePaint = ({ width, tool }: UsePaintHookProps) => {
   };
 
   const drawRectangle = (x: number, y: number) => {
-    // context!.strokeStyle = color;
+    context!.strokeStyle = color;
     contextRef.current!.lineWidth = +width;
     const recWidth = x - previousPosition.x;
     const recHeight = y - previousPosition.y;
     contextRef.current!.strokeRect(previousPosition.x, previousPosition.y, recWidth, recHeight);
-    // context!.fillStyle = color;
+    context!.fillStyle = color;
     contextRef.current!.fillRect(previousPosition.x, previousPosition.y, recWidth, recHeight);
   };
 

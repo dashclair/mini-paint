@@ -2,7 +2,16 @@
   background-color: rgb(234, 240, 248);
   border-radius: 3px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px;
+  gap: 10px;
+  max-width: 250px;
+  height: 300px;
+  justify-content: flex-start;
+  position: absolute;
+  left: 0;
+  margin-left: 10px;
 }
 
 .buttonsContainer {
@@ -21,7 +30,19 @@
 }
 
 .penwidth {
-    border:0 solid rgb(255, 255, 255);
+  border: 0 solid rgb(255, 255, 255);
+}
+
+.penwidthInput {
+  width: 100%;
+}
+
+.colorPicker {
+}
+
+.colorPickerButton {
+  border: 0;
+  background: transparent;
 }
 
 .toolsButton:hover,

@@ -2,10 +2,11 @@ import { IconComponent } from 'shared/ui';
 import styles from './Tools.module.scss';
 import { ToolsProps } from '../helpers/Tools.types';
 import { ChangeEvent, useState } from 'react';
+import { HexColorPicker } from 'react-colorful';
 
 type ToolType = 'pen' | 'circle' | 'rectangle' | 'line' | 'default';
 
-export const Tools = ({ width, setWidth, setTool }: ToolsProps) => {
+export const Tools = ({ color, width, setWidth, setTool, setColor }: ToolsProps) => {
   const [activeButton, setActiveButton] = useState<string | null>(null);
 
   const handleSetWidth = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,18 +44,21 @@ export const Tools = ({ width, setWidth, setTool }: ToolsProps) => {
 
   return (
     <div className={styles.container}>
+      <button className={styles.colorPickerButton} type="submit">
+        <HexColorPicker className={styles.colorPicker} color={color} onChange={setColor} />
+      </button>
+      <button className={styles.penwidth} type="submit">
+        <input
+          className={styles.penwidthInput}
+          type="range"
+          value={width}
+          onChange={handleSetWidth}
+          min="5"
+          max="50"
+          step="5"
+        />
+      </button>
       <div className={styles.buttonsContainer}>
-        <button className={styles.penwidth} type="submit">
-          <input
-            className={styles.penwidthInput}
-            type="range"
-            value={width}
-            onChange={handleSetWidth}
-            min="5"
-            max="50"
-            step="5"
-          />
-        </button>
         <button
           className={`${styles.toolsButton} ${activePenTool}`}
           onClick={handleSetPen}
