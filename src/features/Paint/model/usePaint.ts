@@ -125,5 +125,11 @@ export const usePaint = ({ width, tool, color }: UsePaintHookProps) => {
     );
   };
 
-  return { canvasRef, startDrawing, endDrawing, handleMouseMove, handleClear };
+  const handleSave = async () => {
+    const url = context!.canvas.toDataURL();
+    const pic = url.substring(22, url.length);
+    console.log('pic', pic);
+  };
+
+  return { canvasRef, startDrawing, endDrawing, handleMouseMove, handleClear, handleSave };
 };
