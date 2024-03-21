@@ -1,0 +1,53 @@
+.container {
+  background-color: rgb(234, 240, 248);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  max-width: 250px;
+  height: 300px;
+  justify-content: flex-start;
+  position: absolute;
+  left: 0;
+  margin-left: 10px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 5px;
+}
+
+.icon {
+  align-self: center;
+}
+
+.toolsButton {
+  border: 1px solid rgb(41, 51, 86);
+  border-radius: 3px;
+  padding-top: 3px;
+}
+
+.penwidth {
+  border: 0 solid rgb(255, 255, 255);
+}
+
+.penwidthInput {
+  width: 100%;
+}
+
+.colorPickerButton {
+  border: 0;
+  background: transparent;
+}
+
+.toolsButton:hover,
+.pen,
+.circle,
+.line,
+.rectangle {
+  background-color: rgb(41, 51, 86);
+  color: white;
+  border-color: rgb(41, 51, 86);
+}

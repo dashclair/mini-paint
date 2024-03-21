@@ -1,5 +1,4 @@
-import { MainPage } from 'pages/MainPage';
-import { PaintingPage } from 'pages/PaintingPage';
+import { PaintingPage, MainPage } from 'pages';
 import { RouteObject } from 'react-router-dom';
 import { ROUTE_NAMES } from 'shared/router/routeNames';
 

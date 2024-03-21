@@ -1,0 +1,21 @@
+.canvas {
+  border: 6px solid rgb(41, 51, 86);
+  background-color: white;
+}
+
+.canvasContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttonsContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.buttons {
+  background: rgb(41, 51, 86);
+}
