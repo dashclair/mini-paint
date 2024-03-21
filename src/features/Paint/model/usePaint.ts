@@ -1,5 +1,4 @@
 import { MouseEvent, useEffect, useRef, useState } from 'react';
-import { uploadFile } from './uploadFile';
 
 export interface UsePaintHookProps {
   width: string;
@@ -126,12 +125,5 @@ export const usePaint = ({ width, tool, color }: UsePaintHookProps) => {
     );
   };
 
-  const handleSave = async () => {
-    const url = context!.canvas.toDataURL();
-    const pic = url.substring(22, url.length);
-
-    await uploadFile(pic);
-  };
-
-  return { canvasRef, startDrawing, endDrawing, handleMouseMove, handleClear, handleSave };
+  return { canvasRef, startDrawing, endDrawing, handleMouseMove, handleClear, context };
 };
