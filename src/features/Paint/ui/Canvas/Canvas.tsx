@@ -25,7 +25,7 @@ export const Canvas = ({ color, width, tool }: CanvasProps) => {
           Clear
         </CustomButton>
         <CustomButton className={styles.buttons} type="primary" onClick={() => {}}>
-          Download
+          Save
         </CustomButton>
       </div>
     </div>
