@@ -1,7 +1,6 @@
 import styles from './Cnavas.module.scss';
 import { CanvasProps } from 'features/Paint/helpers/Canvas.types';
 import { usePaint } from 'features/Paint/model/usePaint';
-// import { useUploadFile } from 'features/Paint/model/useUploadFile';
 import { CustomButton } from 'shared/ui';
 
 export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) => {
