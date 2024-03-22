@@ -1,5 +1,4 @@
 import { Canvas } from 'features/Paint';
-import styles from './PaintingPage.module.scss';
 import { Tools } from 'entities/Tools';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,13 +8,14 @@ import { getDownloadURL, ref, uploadString } from '@firebase/storage';
 import { db, storage } from 'app/config/firbase';
 import { addDoc, collection } from '@firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
+import styles from './PaintingPage.module.scss';
 
 export const PaintingPage = () => {
   const [tool, setTool] = useState<string | null>(null);
   const [width, setWidth] = useState<string>('3');
   const [color, setColor] = useState('#aabbcc');
   const user = useAppSelector(selectUser);
-  const userId = user.userData!.uid;
+  const userEmail = user.userData!.email;
 
   const handleUploadFile = (pic: string) => {
     const picId = uuidv4();
@@ -31,7 +31,7 @@ export const PaintingPage = () => {
           addDoc(collection(db, 'images'), {
             imageURL: downloadURL,
             date: new Date(),
-            userId: userId,
+            userEmail: userEmail,
           });
           toast.success('Successfully uploaded');
         } catch (error) {
