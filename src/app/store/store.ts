@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from '../../entities/User';
+import { postsReducer } from '../../entities/Post';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    posts: postsReducer,
   },
 });
 
