@@ -1,0 +1,8 @@
+.feedWidgenContainer {
+  display: grid;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  row-gap: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(5, 1fr);
+}
