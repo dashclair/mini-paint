@@ -11,8 +11,8 @@ export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) =
   });
 
   const handleSave = async () => {
-    const url = context!.canvas.toDataURL();
-    const pic = url.substring(22, url.length);
+    const url = context?.canvas.toDataURL();
+    const pic = url?.substring(22, url.length);
 
     await handleUploadImage(pic);
   };
