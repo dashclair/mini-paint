@@ -10,7 +10,7 @@ export interface LayoutLoaderProps {
 export const LayoutLoader = ({ isLoading, children }: LayoutLoaderProps) => {
   return isLoading ? (
     <div className={styles.container}>
-      <Spin size="large" />
+      <Spin fullscreen size="large" />
     </div>
   ) : (
     children
