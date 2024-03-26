@@ -1,37 +1,31 @@
-import { Card, Spin } from 'antd';
+import { Card } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import styles from './FeedLayout.module.scss';
-import { QueryDocumentSnapshot, collection, getDocs, query } from 'firebase/firestore';
-import { db } from 'app/config/firbase';
-import { useQueryData } from 'shared/model/useQueryData';
+import { LayoutLoader } from 'shared/ui';
+import { Skeleton } from 'antd';
+import { useGetCards } from '../model/useGetCards';
 
 export const FeedLayout = () => {
-  const q = query(collection(db, 'images'));
-  const querySnapshot = () => {
-    return getDocs(q);
-  };
-
-  const { data, isLoading } = useQueryData(querySnapshot);
-
-  const posts = data?.docs.map((doc: QueryDocumentSnapshot) => {
-    const picsInfo = doc.data();
-    const imageURL = picsInfo.imageURL;
-    const userEmail = picsInfo.userEmail;
-
-    return { imageURL, userEmail };
-  });
-
-  console.log('loading', isLoading);
+  const { posts, isLoading, handleSetImageLoad, imageIsLoad } = useGetCards();
 
   return (
-    <div className={styles.feedWidgenContainer}>
-      {posts?.map((post) => {
-        return (
-          <Card key={post.imageURL} hoverable style={{ width: 240 }} cover={<Spin />}>
-            <Meta description={post.userEmail} />
-          </Card>
-        );
-      })}
-    </div>
+    <LayoutLoader isLoading={isLoading}>
+      <div className={styles.feedWidgenContainer}>
+        {posts?.map((post) => {
+          return (
+            <>
+              <Card
+                key={post.imageURL}
+                hoverable
+                cover={<img onLoad={handleSetImageLoad} alt="example" src={post.imageURL} />}
+              >
+                <Meta description={post.userEmail} />
+              </Card>
+              <Skeleton loading={imageIsLoad} paragraph />
+            </>
+          );
+        })}
+      </div>
+    </LayoutLoader>
   );
 };
