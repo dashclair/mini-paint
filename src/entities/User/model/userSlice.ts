@@ -3,7 +3,7 @@ import { RootState } from '../../../app/store/store';
 
 export interface userDataProps {
   email: string | null;
-  id: string | null;
+  uid: string | null;
 }
 
 export interface userStateProps {

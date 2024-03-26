@@ -24,9 +24,10 @@ export const useUser = () => {
     handleOnAuthChanged();
   }, [handleOnAuthChanged]);
 
-  const userId = authData.userData?.id;
+  const userId = authData.userData?.uid;
+  const userEmail = authData.userData?.email;
   const isAuth = authData.isAuth;
   const isLoading = authData.pending;
 
-  return { userId, isAuth, isLoading };
+  return { userId, isAuth, isLoading, userEmail };
 };

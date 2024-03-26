@@ -3,12 +3,20 @@ import { CanvasProps } from 'features/Paint/helpers/Canvas.types';
 import { usePaint } from 'features/Paint/model/usePaint';
 import { CustomButton } from 'shared/ui';
 
-export const Canvas = ({ color, width, tool }: CanvasProps) => {
-  const { startDrawing, handleMouseMove, canvasRef, endDrawing, handleClear } = usePaint({
+export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) => {
+  const { startDrawing, handleMouseMove, canvasRef, endDrawing, handleClear, context } = usePaint({
     width,
     tool,
     color,
   });
+
+  const handleSave = async () => {
+    const url = context?.canvas.toDataURL();
+    const pic = url?.substring(22, url.length);
+
+    await handleUploadImage(pic);
+  };
+
   return (
     <div className={styles.canvasContainer}>
       <canvas
@@ -24,7 +32,7 @@ export const Canvas = ({ color, width, tool }: CanvasProps) => {
         <CustomButton className={styles.buttons} type="primary" onClick={handleClear}>
           Clear
         </CustomButton>
-        <CustomButton className={styles.buttons} type="primary" onClick={() => {}}>
+        <CustomButton className={styles.buttons} type="primary" onClick={handleSave}>
           Save
         </CustomButton>
       </div>
