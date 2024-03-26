@@ -5,18 +5,17 @@ type QueryFunction<T> = () => Promise<T>;
 
 type UseQueryReturn<T> = {
   data: T | null;
-  isError?: boolean;
-  isLoading?: boolean;
+  isError: boolean;
+  isLoading: boolean;
 };
 
 export const useQueryData = <T>(queryFunction: QueryFunction<T>): UseQueryReturn<T> => {
-  const [isLoading, setIsLoading] = useState<boolean>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState('');
 
   const fetchData = useCallback(async () => {
     try {
-      setIsLoading(true);
       setError('');
       const data = await queryFunction();
       setData(data);
