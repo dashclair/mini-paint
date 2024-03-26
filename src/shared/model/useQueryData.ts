@@ -26,7 +26,7 @@ export const useQueryData = <T>(queryFunction: QueryFunction<T>): UseQueryReturn
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [queryFunction]);
 
   useEffect(() => {
     fetchData();
