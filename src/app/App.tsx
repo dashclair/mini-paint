@@ -5,11 +5,9 @@ import { AppRouter } from './routes/AppRouter';
 export const App = () => {
   const { isLoading } = useUser();
 
-  return isLoading ? (
-    <LayoutLoader />
-  ) : (
-    <>
+  return (
+    <LayoutLoader isLoading={isLoading}>
       <AppRouter />
-    </>
+    </LayoutLoader>
   );
 };
