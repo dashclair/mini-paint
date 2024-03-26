@@ -5,12 +5,14 @@ import { selectUser } from 'entities/User';
 import { AuthFormContainer, CustomButton } from 'shared/ui';
 import { LoginInputProps } from '../types/LoginInput.types';
 import { ROUTE_NAMES } from 'shared/router/routeNames';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from 'shared/model/hooks';
+import { emailValidationRules, passwordValidationRules } from 'shared/helpers';
+import { useMutation } from 'shared/model/useMutation';
+import { UserCredential, signInWithEmailAndPassword } from '@firebase/auth';
+import { auth } from 'app/config/firbase';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './LoginForm.module.scss';
-import { signIn } from '../lib/signIn';
-import { emailValidationRules, passwordValidationRules } from 'shared/helpers';
 
 export const LoginForm = () => {
   const {
@@ -20,9 +22,13 @@ export const LoginForm = () => {
   } = useForm<LoginInputProps>();
 
   const navigate = useNavigate();
-  const user = useAppSelector(selectUser);
 
+  const user = useAppSelector(selectUser);
   const isAuth = user.isAuth;
+
+  const { mutate, isLoading } = useMutation<LoginInputProps, UserCredential>(
+    ({ email, password }) => signInWithEmailAndPassword(auth, email, password),
+  );
 
   if (isAuth) {
     console.log('navigate');
@@ -30,11 +36,8 @@ export const LoginForm = () => {
   }
 
   const handleSubmitForm = async ({ email, password }: LoginInputProps) => {
-    try {
-      await signIn({ email, password });
-    } catch (error) {
-      toast.error(`Something went wrong. Please check the credentials.`);
-    }
+    const data = await mutate({ email, password });
+    console.log('data', data);
   };
 
   const handleRegistration = () => {
@@ -79,6 +82,7 @@ export const LoginForm = () => {
         />
         <div className={styles.btnContainer}>
           <CustomButton
+            disabled={isLoading}
             type="default"
             className={styles.btn}
             size="large"
@@ -87,6 +91,7 @@ export const LoginForm = () => {
             Create account
           </CustomButton>
           <CustomButton
+            disabled={isLoading}
             className={`${styles.btn} ${styles.btn_primary}`}
             size="large"
             htmlType="submit"
