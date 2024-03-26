@@ -13,16 +13,14 @@ export const FeedLayout = () => {
       <div className={styles.feedWidgenContainer}>
         {posts?.map((post) => {
           return (
-            <>
-              <Card
-                key={post.imageURL}
-                hoverable
-                cover={<img onLoad={handleSetImageLoad} alt="example" src={post.imageURL} />}
-              >
-                <Meta description={post.userEmail} />
-              </Card>
+            <Card
+              key={post.imageURL}
+              hoverable
+              cover={<img onLoad={handleSetImageLoad} alt="example" src={post.imageURL} />}
+            >
               <Skeleton loading={imageIsLoad} paragraph />
-            </>
+              <Meta description={post.userEmail} />
+            </Card>
           );
         })}
       </div>
