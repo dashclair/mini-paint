@@ -128,14 +128,5 @@ export const usePaint = ({ width, tool, color }: UsePaintHookProps) => {
     context?.clearRect(0, 0, context.canvas.width, context.canvas.height);
   };
 
-  const handleSave = async (uploadFn: <T>(pic: string) => Promise<T>) => {
-    if (context) {
-      const url = context?.canvas.toDataURL();
-      const pic = url?.substring(22, url.length);
-      console.log('handleSave from hook');
-      await uploadFn(pic);
-    }
-  };
-
-  return { canvasRef, startDrawing, endDrawing, handleMouseMove, handleClear, context, handleSave };
+  return { canvasRef, startDrawing, endDrawing, handleMouseMove, handleClear, context };
 };
