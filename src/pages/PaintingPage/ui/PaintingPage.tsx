@@ -1,21 +1,21 @@
 import { Canvas } from 'features/Paint';
 import { Tools } from 'entities/Tools';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { useAppSelector } from 'shared/model/hooks';
-import { selectUser } from 'entities/User';
-import { getDownloadURL, ref, uploadString } from '@firebase/storage';
-import { db, storage } from 'app/config/firbase';
-import { addDoc, collection } from '@firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
 import styles from './PaintingPage.module.scss';
+import { usePaintingPage } from '../lib/usePaintinPage';
+import { v4 as uuidv4 } from 'uuid';
+import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { db, storage } from 'app/config/firbase';
+import { addDoc, collection } from 'firebase/firestore';
 
 export const PaintingPage = () => {
-  const [tool, setTool] = useState<string | null>(null);
-  const [width, setWidth] = useState<string>('3');
-  const [color, setColor] = useState('#aabbcc');
-  const user = useAppSelector(selectUser);
-  const userEmail = user.userData!.email;
+  const { tool, setTool, width, setWidth, setColor, color, userEmail } = usePaintingPage();
+
+  // const { mutate, isLoading} = useMutation<string, UploadResult>((pic) =>
+  //   uploadString(storageRef, pic, 'base64', {
+  //     contentType: 'image/png',
+  //   }),
+  // );
 
   const handleUploadFile = (pic: string) => {
     const picId = uuidv4();
@@ -43,7 +43,7 @@ export const PaintingPage = () => {
 
   return (
     <div className={styles.container}>
-      <ToastContainer />
+      <ToastContainer position="top-left" />
       <Tools
         width={width}
         setWidth={setWidth}
