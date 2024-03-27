@@ -4,15 +4,17 @@ import { usePaint } from 'features/Paint/model/usePaint';
 import { CustomButton } from 'shared/ui';
 
 export const Canvas = ({ color, width, tool, handleUploadImage, isLoading }: CanvasProps) => {
-  const { startDrawing, handleMouseMove, canvasRef, endDrawing, handleClear, handleSave } =
-    usePaint({
-      width,
-      tool,
-      color,
-    });
+  const { startDrawing, handleMouseMove, canvasRef, endDrawing, handleClear, context } = usePaint({
+    width,
+    tool,
+    color,
+  });
 
-  const handlePicSave = () => {
-    handleSave(handleUploadImage);
+  const handleSave = async () => {
+    const url = context?.canvas.toDataURL();
+    const pic = url?.substring(22, url.length);
+
+    await handleUploadImage(pic);
   };
 
   return (
@@ -34,7 +36,7 @@ export const Canvas = ({ color, width, tool, handleUploadImage, isLoading }: Can
           disabled={isLoading}
           className={styles.buttons}
           type="primary"
-          onClick={handlePicSave}
+          onClick={handleSave}
         >
           Save
         </CustomButton>
