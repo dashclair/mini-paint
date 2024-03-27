@@ -1,6 +1,6 @@
 import { db } from 'app/config/firbase';
 import { QueryDocumentSnapshot, collection, getDocs, query } from 'firebase/firestore';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useQueryData } from 'shared/model/useQueryData';
 
 interface PostsReturnedTypes {
@@ -10,9 +10,9 @@ interface PostsReturnedTypes {
 
 export const useGetCards = () => {
   const q = query(collection(db, 'images'));
-  const querySnapshot = useCallback(() => {
+  const querySnapshot = () => {
     return getDocs(q);
-  }, [q]);
+  };
 
   const [imageIsLoad, setImageLoad] = useState(true);
   const { data, isLoading } = useQueryData(querySnapshot);

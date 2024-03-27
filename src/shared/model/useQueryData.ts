@@ -22,7 +22,7 @@ export const useQueryData = <T>(queryFunction: QueryFunction<T>): UseQueryReturn
 
       return data;
     } catch (error) {
-      toast.error('Something went wrong');
+      toast.error('someting went wrond while fetching data');
     } finally {
       setIsLoading(false);
     }
@@ -30,7 +30,7 @@ export const useQueryData = <T>(queryFunction: QueryFunction<T>): UseQueryReturn
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   return { data, isError: Boolean(error), isLoading };
 };
