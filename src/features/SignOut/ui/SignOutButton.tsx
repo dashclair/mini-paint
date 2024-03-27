@@ -20,7 +20,7 @@ export const SignOutButton = () => {
       <CustomButton type="link" onClick={showModal}>
         {<IconComponent iconName="exit" className={styles.exitIcon} />}
       </CustomButton>
-      <Modal title="Exit" open={isModalOpen} onOk={signOutUser} onCancel={handleCancel}>
+      <Modal title="Sign out" open={isModalOpen} onOk={signOutUser} onCancel={handleCancel}>
         <p>Are you sure you want to leave the page?</p>
       </Modal>
     </>
