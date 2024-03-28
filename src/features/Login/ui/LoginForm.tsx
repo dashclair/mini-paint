@@ -5,7 +5,6 @@ import { selectUser } from 'entities/User';
 import { AuthFormContainer, CustomButton } from 'shared/ui';
 import { LoginInputProps } from '../types/LoginInput.types';
 import { ROUTE_NAMES } from 'shared/router/routeNames';
-import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from 'shared/model/hooks';
 import { emailValidationRules, passwordValidationRules } from 'shared/helpers';
 import { useMutation } from 'shared/model/useMutation';
@@ -46,7 +45,6 @@ export const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      <ToastContainer />
       <h1 className={styles.title}>Sign in</h1>
       <Form className={styles.form} onFinish={handleSubmit(handleSubmitForm)}>
         <Controller

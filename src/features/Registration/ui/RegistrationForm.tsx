@@ -1,6 +1,5 @@
 import { Controller, useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import { Form, Input } from 'antd';
 import { selectUser } from 'entities/User';
 import { emailValidationRules, passwordValidationRules } from 'shared/helpers';
@@ -54,7 +53,6 @@ export const RegistrationForm = () => {
 
   return (
     <AuthFormContainer>
-      <ToastContainer />
       <h1 className={styles.title}>Registration</h1>
       <Form className={styles.form} onFinish={handleSubmit(handleSubmitRegistration)}>
         <Controller
