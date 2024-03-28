@@ -12,20 +12,17 @@ export const usePaintingPage = () => {
   const [width, setWidth] = useState<string>('3');
   const [color, setColor] = useState('#aabbcc');
   const user = useAppSelector(selectUser);
-  const [isLoading, setIsLoading] = useState(false);
   const userEmail = user.userData!.email;
 
   const handleUploadFile = async (pic: string) => {
     const picId = uuidv4();
 
     const storageRef = ref(storage, `images/${picId}`);
-    const uploadImage = uploadString(storageRef, pic, 'base64', {
-      contentType: 'image/png',
-    });
 
     try {
-      setIsLoading(true);
-      const snapshot = await uploadImage;
+      const snapshot = await uploadString(storageRef, pic, 'base64', {
+        contentType: 'image/png',
+      });
       const downloadURL = await getDownloadURL(snapshot.ref);
 
       const uploading = await addDoc(collection(db, 'images'), {
@@ -38,10 +35,7 @@ export const usePaintingPage = () => {
       toast.success('Successfully uploaded');
     } catch (error) {
       toast.error('Something went wrong during the upload process');
-      setIsLoading(false);
       console.error(error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -54,6 +48,5 @@ export const usePaintingPage = () => {
     color,
     userEmail,
     handleUploadFile,
-    isLoading,
   };
 };
