@@ -1,5 +1,4 @@
 import { Spin } from 'antd';
-import styles from './LayoutLoader.module.scss';
 import { ReactNode } from 'react';
 
 export interface LayoutLoaderProps {
@@ -8,11 +7,5 @@ export interface LayoutLoaderProps {
 }
 
 export const LayoutLoader = ({ isLoading, children }: LayoutLoaderProps) => {
-  return isLoading ? (
-    <div className={styles.container}>
-      <Spin fullscreen size="large" />
-    </div>
-  ) : (
-    children
-  );
+  return isLoading ? <Spin fullscreen size="large" /> : children;
 };

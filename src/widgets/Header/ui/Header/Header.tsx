@@ -7,6 +7,7 @@ import styles from './Header.module.scss';
 
 export const Header = () => {
   const user = useAppSelector(selectUser);
+  const email = user.userData?.email;
   const path = location.pathname;
   const hideHeader = path === ROUTE_NAMES.LOGIN || path === ROUTE_NAMES.SIGNUP;
 
@@ -29,6 +30,7 @@ export const Header = () => {
         <Link className={styles.link} to={ROUTE_NAMES.PAINTER}>
           Painter
         </Link>
+        <p>{email}</p>
         <SignOutButton />
       </div>
     </>

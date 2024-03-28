@@ -6,3 +6,10 @@
   justify-content: center;
   grid-template-columns: repeat(5, 1fr);
 }
+
+@media (max-width: 900px) {
+  .feedWidgenContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}

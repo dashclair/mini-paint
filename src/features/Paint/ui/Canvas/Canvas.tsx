@@ -3,7 +3,7 @@ import { CanvasProps } from 'features/Paint/helpers/Canvas.types';
 import { usePaint } from 'features/Paint/model/usePaint';
 import { CustomButton } from 'shared/ui';
 
-export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) => {
+export const Canvas = ({ color, width, tool, handleUploadImage, isLoading }: CanvasProps) => {
   const { startDrawing, handleMouseMove, canvasRef, endDrawing, handleClear, context } = usePaint({
     width,
     tool,
@@ -29,10 +29,20 @@ export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) =
         ref={canvasRef}
       />
       <div className={styles.buttonsContainer}>
-        <CustomButton className={styles.buttons} type="primary" onClick={handleClear}>
+        <CustomButton
+          disabled={isLoading}
+          className={styles.buttons}
+          type="primary"
+          onClick={handleClear}
+        >
           Clear
         </CustomButton>
-        <CustomButton className={styles.buttons} type="primary" onClick={handleSave}>
+        <CustomButton
+          disabled={isLoading}
+          className={styles.buttons}
+          type="primary"
+          onClick={handleSave}
+        >
           Save
         </CustomButton>
       </div>
