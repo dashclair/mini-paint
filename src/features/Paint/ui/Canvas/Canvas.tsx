@@ -1,8 +1,8 @@
-import styles from './Cnavas.module.scss';
 import { CanvasProps } from 'features/Paint/helpers/Canvas.types';
 import { usePaint } from 'features/Paint/model/usePaint';
 import { useMutation } from 'shared/model/useMutation';
 import { CustomButton } from 'shared/ui';
+import styles from './Cnavas.module.scss';
 
 export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) => {
   const { startDrawing, handleMouseMove, canvasRef, endDrawing, handleClear, context } = usePaint({
@@ -14,10 +14,12 @@ export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) =
   const { mutate, isLoading } = useMutation(handleUploadImage);
 
   const handleSave = () => {
-    const url = context?.canvas.toDataURL();
-    const pic = url?.substring(22, url.length);
+    if (context) {
+      const url = context.canvas.toDataURL();
+      const pic = url?.substring(22, url.length);
 
-    mutate(pic);
+      mutate(pic);
+    }
   };
 
   return (
