@@ -23,6 +23,7 @@ export const usePaintingPage = () => {
       const snapshot = await uploadString(storageRef, pic, 'base64', {
         contentType: 'image/png',
       });
+
       const downloadURL = await getDownloadURL(snapshot.ref);
 
       const uploading = await addDoc(collection(db, 'images'), {

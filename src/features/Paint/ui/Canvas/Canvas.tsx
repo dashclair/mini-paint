@@ -4,7 +4,7 @@ import { useMutation } from 'shared/model/useMutation';
 import { CustomButton } from 'shared/ui';
 import styles from './Cnavas.module.scss';
 
-export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) => {
+export const Canvas = ({ color, width, tool, handleUploadImage, isLoading }: CanvasProps) => {
   const { startDrawing, handleMouseMove, canvasRef, endDrawing, handleClear, context } = usePaint({
     width,
     tool,
