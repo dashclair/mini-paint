@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../../app/store/store';
+import { RootState } from 'app/store/store';
 
 export interface userDataProps {
   email: string | null;

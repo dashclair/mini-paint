@@ -1,8 +1,8 @@
-import { auth } from '../../../app/config/firbase';
+import { auth } from 'app/config/firbase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useCallback, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from 'shared/model/hooks';
 import { selectUser, setUnAuth, setUser } from '../../User';
-import { useAppDispatch, useAppSelector } from '../../../shared/model/hooks';
 
 export const useUser = () => {
   const dispatch = useAppDispatch();

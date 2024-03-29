@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { selectUser } from '../../../../entities/User';
-import { SignOutButton } from '../../../../features/SignOut';
-import { useAppSelector } from '../../../../shared/model/hooks';
-import { ROUTE_NAMES } from '../../../../shared/router/routeNames';
+import { selectUser } from 'entities/User';
+import { SignOutButton } from 'features/SignOut';
+import { useAppSelector } from 'shared/model/hooks';
+import { ROUTE_NAMES } from 'shared/router/routeNames';
 import styles from './Header.module.scss';
 
 export const Header = () => {
