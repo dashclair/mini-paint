@@ -1,40 +1,22 @@
-import { Card, Select } from 'antd';
-import Meta from 'antd/es/card/Meta';
-import styles from './FeedLayout.module.scss';
 import { LayoutLoader } from 'shared/ui';
 import { Skeleton } from 'antd';
 import { useGetCards } from '../model/useGetCards';
-import { useState } from 'react';
+import { Card, Select } from 'antd';
+import Meta from 'antd/es/card/Meta';
+import styles from './FeedLayout.module.scss';
 
 export const FeedLayout = () => {
-  const { posts, isLoading, handleSetImageLoad, imageIsLoad } = useGetCards();
-  const [filteredEmail, setFilterdEmails] = useState<string>('');
-  const [emails, setEmails] = useState<{ value: string; label: string }[] | undefined>([]);
-
-  const handleOpen = (open: boolean) => {
-    if (open) {
-      const emailsOnOpen = Array.from(new Set(posts?.map((post) => post.userEmail)));
-      const filteredUsers = emailsOnOpen?.map((email) => {
-        return {
-          value: email,
-          label: email,
-        };
-      });
-
-      setEmails(filteredUsers);
-      console.log('emails on open', emailsOnOpen);
-      console.log('filtered email', filteredUsers);
-    }
-  };
-
-  const handleSelectUser = (value: string) => {
-    console.log('selected value', value);
-    setFilterdEmails(value);
-  };
-
-  const handleDeselect = () => {
-    setFilterdEmails('');
-  };
+  const {
+    posts,
+    imageIsLoad,
+    isLoading,
+    emails,
+    handleSetImageLoad,
+    handleOpen,
+    handleSelectUser,
+    handleDeselect,
+    shouldShowPost,
+  } = useGetCards();
 
   return (
     <LayoutLoader isLoading={isLoading}>
@@ -48,7 +30,7 @@ export const FeedLayout = () => {
       />
       <div className={styles.feedWidgenContainer}>
         {posts
-          ?.filter((post) => post.userEmail.includes(filteredEmail))
+          ?.filter((post) => shouldShowPost(post))
           .map((post) => {
             return (
               <Card
