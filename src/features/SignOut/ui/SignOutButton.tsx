@@ -17,7 +17,7 @@ export const SignOutButton = () => {
   };
   return (
     <>
-      <CustomButton type="link" onClick={showModal}>
+      <CustomButton type="link" onClick={showModal} className={styles.iconButton}>
         {<IconComponent iconName="exit" className={styles.exitIcon} />}
       </CustomButton>
       <Modal title="Sign out" open={isModalOpen} onOk={signOutUser} onCancel={handleCancel}>
