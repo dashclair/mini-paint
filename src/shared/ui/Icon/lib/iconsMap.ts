@@ -4,7 +4,7 @@ import CircleIcon from '../assets/circle-svgrepo-com.svg?react';
 import LineIcon from '../assets/line-svgrepo-com.svg?react';
 import RectangleIcon from '../assets/rectangle-svgrepo-com.svg?react';
 import LightMode from '../assets/light-on-sun-black-outline.svg?react';
-import DarkMode from '../assets/moon-6679.svg';
+import DarkMode from '../assets/moon-6679.svg?react';
 
 export const iconsMap = {
   exit: { component: ExitIcon },
