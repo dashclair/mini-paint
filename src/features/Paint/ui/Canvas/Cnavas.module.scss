@@ -1,5 +1,5 @@
 .canvas {
-  border: 6px solid rgb(41, 51, 86);
+  border: 6px solid var(--primaryButtonBackgroundColor);
   background-color: white;
 }
 
@@ -18,7 +18,5 @@
 }
 
 .buttons {
-  background: rgb(41, 51, 86);
+  background: var(--primaryButtonBackgroundColor);
 }
-
-
