@@ -4,6 +4,7 @@ import { SignOutButton } from 'features/SignOut';
 import { useAppSelector } from 'shared/model/hooks';
 import { ROUTE_NAMES } from 'shared/router/routeNames';
 import styles from './Header.module.scss';
+import { ThemeButton } from 'features/Theme';
 
 export const Header = () => {
   const user = useAppSelector(selectUser);
@@ -31,6 +32,7 @@ export const Header = () => {
           Painter
         </Link>
         <p>{email}</p>
+        <ThemeButton />
         <SignOutButton />
       </div>
     </>
