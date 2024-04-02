@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--secondaryBackgroundColor);
     border-radius: 8px;
-    box-shadow: -4px 22px 61px 14px rgba(165, 180, 194, 0.555);
+    box-shadow: var(--primaryBoxShadow);
   }
