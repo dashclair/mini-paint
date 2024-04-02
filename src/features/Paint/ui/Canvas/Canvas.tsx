@@ -32,12 +32,7 @@ export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) =
         ref={canvasRef}
       />
       <div className={styles.buttonsContainer}>
-        <CustomButton
-          disabled={isLoading}
-          className={styles.buttons}
-          type="primary"
-          onClick={handleClear}
-        >
+        <CustomButton disabled={isLoading} className={styles.buttons} onClick={handleClear}>
           Clear
         </CustomButton>
         <CustomButton
