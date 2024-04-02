@@ -14,21 +14,23 @@ body[data-theme='light'] {
   --secondaryBackgroundColor: #ffffff;
   --primaryTextColor: #000000;
   --primaryButtonBackgroundColor: #1d243c;
+  --toolsButtonColor:#f5f5f5
 
   --hoverLinkColor: #535bf2;
 
-  --primaryBoxShadow: -4px 5px 20px 5px rgba(210, 222, 233, 0.555);
+  --primaryBoxShadow: -4px 5px 20px 10px rgba(210, 222, 233, 0.555);
 }
 
 body[data-theme='dark'] {
   --primaryBackgroundColor: #0e111f;
-  --secondaryBackgroundColor: #0e111f;
+  --secondaryBackgroundColor: #3e4973;
   --primaryTextColor: #ffffff;
   --primaryButtonBackgroundColor:#292b61;
+  --toolsButtonColor:#292b61;
 
   --hoverLinkColor: #535bf2;
 
-  --primaryBoxShadow: -4px 5px 20px 5px rgba(14, 37, 62, 0.529);
+  --primaryBoxShadow: -4px 5px 20px 15px rgba(14, 37, 62, 0.529);
 }
 
 a {
