@@ -25,8 +25,6 @@ export const Canvas = ({ color, width, tool, handleUploadImage }: CanvasProps) =
   return (
     <div className={styles.canvasContainer}>
       <canvas
-        width={700}
-        height={450}
         className={styles.canvas}
         onMouseDown={startDrawing}
         onMouseUp={endDrawing}

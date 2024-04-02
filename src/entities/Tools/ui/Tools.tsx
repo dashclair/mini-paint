@@ -1,8 +1,8 @@
 import { IconComponent } from 'shared/ui';
-import styles from './Tools.module.scss';
 import { ToolsProps } from '../helpers/Tools.types';
 import { ChangeEvent, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
+import styles from './Tools.module.scss';
 
 type ToolType = 'pen' | 'circle' | 'rectangle' | 'line' | 'default';
 

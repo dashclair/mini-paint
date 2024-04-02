@@ -19,7 +19,15 @@ export const usePaint = ({ width, tool, color }: UsePaintHookProps) => {
 
   useEffect(() => {
     if (canvasRef.current) {
+      const canvas = canvasRef.current;
       contextRef.current = canvasRef.current.getContext('2d');
+
+      canvas.height = window.innerHeight * 0.5;
+      canvas.width = window.innerWidth * 0.5;
+      canvas.style.width = `${window.innerWidth * 0.5}`;
+      canvas.style.height = `${window.innerHeight * 0.5}px`;
+
+      contextRef.current?.scale(1, 1);
     }
   }, []);
 

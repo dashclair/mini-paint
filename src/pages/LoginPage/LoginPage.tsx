@@ -1,5 +1,5 @@
-import { LoginForm } from '../../features/Login';
-import { AuthLayout } from '../../shared/ui';
+import { LoginForm } from 'features/Login';
+import { AuthLayout } from 'shared/ui';
 
 export const LoginPage = () => {
   return (
