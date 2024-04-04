@@ -1,11 +1,12 @@
 import { FeedLayout } from 'widgets/Feed';
-
 import styles from './MainPage.module.scss';
 
-export const MainPage = () => {
+const MainPage = () => {
   return (
     <div className={styles.container}>
       <FeedLayout />
     </div>
   );
 };
+
+export default MainPage;
