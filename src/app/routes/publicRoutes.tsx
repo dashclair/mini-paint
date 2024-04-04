@@ -1,4 +1,5 @@
-import { LoginPage, RegistrationPage } from 'pages';
+import { LoginPage } from 'pages/LoginPage';
+import { RegistrationPage } from 'pages/RegistrationPage';
 import { RouteObject } from 'react-router-dom';
 import { ROUTE_NAMES } from 'shared/router/routeNames';
 
