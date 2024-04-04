@@ -4,6 +4,8 @@ import { protectedRoutes } from './protectedRoutes';
 import { publicRoutes } from './publicRoutes';
 import { MainLayout } from 'shared/ui';
 import { Header } from 'widgets/Header';
+import { Suspense } from 'react';
+import { Spin } from 'antd';
 
 export const AppRouter = () => {
   const router = createBrowserRouter([
@@ -12,7 +14,9 @@ export const AppRouter = () => {
         <>
           <Header />
           <MainLayout>
-            <Outlet />
+            <Suspense fallback={<Spin />}>
+              <Outlet />
+            </Suspense>
           </MainLayout>
         </>
       ),
