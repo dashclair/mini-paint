@@ -1,9 +1,10 @@
 import { LayoutLoader } from 'shared/ui';
 import { Skeleton } from 'antd';
-import { useGetCards } from '../model/useGetCards';
+import { useGetCards } from '../../model/useGetCards';
 import { Card, Select } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import styles from './FeedLayout.module.scss';
+import { PreviewButton } from 'features/Preview';
 
 export const FeedLayout = () => {
   const {
@@ -39,7 +40,10 @@ export const FeedLayout = () => {
                 cover={<img onLoad={handleSetImageLoad} alt="example" src={post.imageURL} />}
               >
                 <Skeleton loading={imageIsLoad} paragraph />
-                <Meta description={post.userEmail} />
+                <div className={styles.cardContentContainer}>
+                  <Meta description={post.userEmail} />
+                  <PreviewButton image={post.imageURL} />
+                </div>
               </Card>
             );
           })}

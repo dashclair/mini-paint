@@ -7,6 +7,12 @@
   grid-template-columns: repeat(5, 1fr);
 }
 
+.cardContentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 @media (max-width: 900px) {
   .feedWidgenContainer {
     grid-template-columns: repeat(3, 1fr);
