@@ -3,18 +3,11 @@ import { IconComponent } from 'shared/ui';
 import styles from './SignOutButton.module.scss';
 import { signOutUser } from '../lib/signOutUser';
 import { Modal } from 'antd';
-import { useState } from 'react';
+import { useModal } from 'shared/model/useModal';
 
 export const SignOutButton = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { showModal, handleCancel, isModalOpen } = useModal();
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   return (
     <>
       <CustomButton type="link" onClick={showModal} className={styles.iconButton}>
