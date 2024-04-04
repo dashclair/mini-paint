@@ -22,8 +22,8 @@ body[data-theme='light'] {
 }
 
 body[data-theme='dark'] {
-  --primaryBackgroundColor: #0e111f;
-  --secondaryBackgroundColor: #3e4973;
+  --primaryBackgroundColor: #293845;
+  --secondaryBackgroundColor: #03111F;
   --primaryTextColor: #ffffff;
   --primaryButtonBackgroundColor:#292b61;
   --toolsButtonColor:#292b61;
