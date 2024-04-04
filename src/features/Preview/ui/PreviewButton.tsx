@@ -12,7 +12,9 @@ export const PreviewButton = ({ image }: PreviewButtonProps) => {
   const { isModalOpen, showModal, handleCancel } = useModal();
   return (
     <div>
-      <CustomButton onClick={() => showModal()}>Preview</CustomButton>
+      <CustomButton className={styles.previewButton} onClick={() => showModal()}>
+        Preview
+      </CustomButton>
       <Modal open={isModalOpen} onCancel={handleCancel} footer={[]} centered>
         <img className={styles.modalWindow} alt="example" src={image} />
       </Modal>
