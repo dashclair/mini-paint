@@ -1,4 +1,4 @@
-import { IconComponent } from 'shared/ui';
+import { CustomButton, IconComponent } from 'shared/ui';
 import { ToolsProps } from '../helpers/Tools.types';
 import { ChangeEvent, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
@@ -59,34 +59,38 @@ export const Tools = ({ color, width, setWidth, setTool, setColor }: ToolsProps)
         />
       </button>
       <div className={styles.buttonsContainer}>
-        <button
+        <CustomButton
+          type="text"
+          role="submit"
           className={`${styles.toolsButton} ${activePenTool}`}
           onClick={handleSetPen}
-          type="submit"
         >
           <IconComponent className={`${styles.icon} `} iconName="pen" />
-        </button>
-        <button
+        </CustomButton>
+        <CustomButton
+          type="text"
+          role="submit"
           className={`${styles.toolsButton} ${activeCircleTool}`}
           onClick={handleSetCircle}
-          type="submit"
         >
           <IconComponent iconName="circle" />
-        </button>
-        <button
+        </CustomButton>
+        <CustomButton
+          type="text"
+          role="submit"
           className={`${styles.toolsButton} ${activeRectangleTool}`}
           onClick={handleSetRectangle}
-          type="submit"
         >
           <IconComponent iconName="rectangle" />
-        </button>
-        <button
+        </CustomButton>
+        <CustomButton
+          type="text"
+          role="submit"
           className={`${styles.toolsButton} ${activeLineTool}`}
           onClick={handleSetLine}
-          type="submit"
         >
           <IconComponent iconName="line" />
-        </button>
+        </CustomButton>
       </div>
     </div>
   );

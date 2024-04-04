@@ -3,7 +3,7 @@ import { Tools } from 'entities/Tools';
 import { usePaintingPage } from '../lib/usePaintinPage';
 import styles from './PaintingPage.module.scss';
 
-export const PaintingPage = () => {
+const PaintingPage = () => {
   const { tool, setTool, width, setWidth, setColor, color, handleUploadFile } = usePaintingPage();
 
   return (
@@ -19,3 +19,5 @@ export const PaintingPage = () => {
     </div>
   );
 };
+
+export default PaintingPage;

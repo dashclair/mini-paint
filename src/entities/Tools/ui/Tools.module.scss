@@ -1,5 +1,5 @@
 .container {
-  background-color: rgb(234, 240, 248);
+  background-color:var(--secondaryBackgroundColor);
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -24,13 +24,12 @@
 }
 
 .toolsButton {
-  border: 1px solid rgb(41, 51, 86);
-  border-radius: 3px;
-  padding-top: 3px;
+  color:var(--primaryTextColor);
 }
 
 .penwidth {
   border: 0 solid rgb(255, 255, 255);
+  background-color: inherit;
 }
 
 .penwidthInput {
@@ -47,7 +46,6 @@
 .circle,
 .line,
 .rectangle {
-  background-color: rgb(41, 51, 86);
+  background-color: var(--primaryButtonBackgroundColor);
   color: white;
-  border-color: rgb(41, 51, 86);
 }

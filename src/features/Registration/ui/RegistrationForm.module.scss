@@ -1,5 +1,5 @@
 .title {
-  color: rgb(41, 51, 86);
+  color: var(--primaryTextColor);
 }
 
 .form {
@@ -19,7 +19,7 @@
   width: 50%;
 
   &_primary {
-    background-color: black;
+    background-color: var(--primaryButtonBackgroundColor);
   }
 }
 
