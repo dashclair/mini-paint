@@ -1,10 +1,11 @@
-import { LayoutLoader } from 'shared/ui';
+import { CustomButton, IconComponent, LayoutLoader } from 'shared/ui';
 import { Skeleton } from 'antd';
 import { useGetCards } from '../../model/useGetCards';
 import { Card, Select } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import styles from './FeedLayout.module.scss';
 import { PreviewButton } from 'features/Preview';
+import { useDeleteCard } from 'widgets/Feed/model/useDeleteCard';
 
 export const FeedLayout = () => {
   const {
@@ -17,7 +18,10 @@ export const FeedLayout = () => {
     handleSelectUser,
     handleDeselect,
     shouldShowPost,
+    refetch,
   } = useGetCards();
+
+  const { handleDeleteDoc } = useDeleteCard(refetch);
 
   return (
     <LayoutLoader isLoading={isLoading}>
@@ -42,7 +46,17 @@ export const FeedLayout = () => {
                 <Skeleton loading={imageIsLoad} paragraph />
                 <div className={styles.cardContentContainer}>
                   <Meta description={post.userEmail} />
-                  <PreviewButton image={post.imageURL} />
+                  <div className={styles.feedButtons}>
+                    <PreviewButton image={post.imageURL} />
+                    <CustomButton
+                      type="text"
+                      className={styles.buttonDelete}
+                      disabled={isLoading}
+                      onClick={() => handleDeleteDoc(post.id)}
+                    >
+                      <IconComponent className={styles.trashIcon} iconName="trash" />
+                    </CustomButton>
+                  </div>
                 </div>
               </Card>
             );
