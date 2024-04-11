@@ -1,1 +1,1 @@
-export { FeedLayout } from './ui/FeedLayout';
+export { FeedLayout } from './ui/FeedLayout/FeedLayout';

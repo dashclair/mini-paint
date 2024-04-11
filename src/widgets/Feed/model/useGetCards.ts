@@ -1,11 +1,12 @@
 import { db } from 'app/config/firbase';
 import { QueryDocumentSnapshot, collection, getDocs, query } from 'firebase/firestore';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useQueryData } from 'shared/model/useQueryData';
 
 export interface PostsReturnedTypes {
   imageURL: string;
   userEmail: string;
+  id: string;
 }
 
 export const useGetCards = () => {
@@ -13,18 +14,19 @@ export const useGetCards = () => {
   const [emails, setEmails] = useState<{ value: string; label: string }[]>([]);
   const [imageIsLoad, setImageLoad] = useState(true);
 
-  const q = query(collection(db, 'images'));
-  const querySnapshot = () => {
-    return getDocs(q);
-  };
-  const { data, isLoading } = useQueryData(querySnapshot);
+  const querySnapshot = useCallback(() => {
+    return getDocs(query(collection(db, 'images')));
+  }, []);
+
+  const { data, isLoading, refetch } = useQueryData(querySnapshot);
 
   const posts = data?.docs.map((doc: QueryDocumentSnapshot): PostsReturnedTypes => {
     const picsInfo = doc.data();
+    const id = doc.id;
     const imageURL = picsInfo.imageURL;
     const userEmail = picsInfo.userEmail;
 
-    return { imageURL, userEmail };
+    return { imageURL, userEmail, id };
   });
 
   const handleOpen = (open: boolean) => {
@@ -73,5 +75,6 @@ export const useGetCards = () => {
     handleSelectUser,
     handleDeselect,
     shouldShowPost,
+    refetch,
   };
 };

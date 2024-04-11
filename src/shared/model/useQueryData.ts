@@ -7,10 +7,19 @@ type UseQueryReturn<T> = {
   data: T | null;
   isError: boolean;
   isLoading: boolean;
+  refetch(): Promise<T | undefined>;
 };
 
-export const useQueryData = <T>(queryFunction: QueryFunction<T>): UseQueryReturn<T> => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+type UseQueryOptions = {
+  refetchOnMount?: boolean;
+};
+
+export const useQueryData = <T>(
+  queryFunction: QueryFunction<T>,
+  options?: UseQueryOptions,
+): UseQueryReturn<T> => {
+  const refetchOnMount = options?.refetchOnMount ?? true;
+  const [isLoading, setIsLoading] = useState<boolean>(refetchOnMount);
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState('');
 
@@ -29,8 +38,10 @@ export const useQueryData = <T>(queryFunction: QueryFunction<T>): UseQueryReturn
   }, []);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (refetchOnMount) {
+      fetchData();
+    }
+  }, [fetchData, refetchOnMount]);
 
-  return { data, isError: Boolean(error), isLoading };
+  return { data, isError: Boolean(error), isLoading, refetch: fetchData };
 };
