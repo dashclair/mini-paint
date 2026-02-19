@@ -1,0 +1,47 @@
+.feedWidgenContainer {
+  display: grid;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  gap: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.cardContentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feedButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonDelete {
+  display: flex;
+}
+
+.buttonDelete:hover {
+  color:var(--hoverLinkColor)
+}
+
+.trashIcon {
+  margin-left: auto;
+  align-self: center;
+
+}
+
+@media (max-width: 900px) {
+  .feedWidgenContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .feedWidgenContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+}

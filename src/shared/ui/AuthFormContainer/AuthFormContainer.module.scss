@@ -1,0 +1,10 @@
+.container {
+    width: 350px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--secondaryBackgroundColor);
+    border-radius: 8px;
+    box-shadow: var(--primaryBoxShadow);
+  }

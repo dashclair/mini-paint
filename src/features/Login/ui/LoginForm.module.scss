@@ -1,0 +1,28 @@
+.title {
+  color: var(--primaryTextColor);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.btnContainer {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.btn {
+    width: 49%;
+    
+    &_primary {
+      background-color: var(--primaryButtonBackgroundColor);
+    }
+}
+
+.input {
+  width: 100%;
+}

@@ -1,0 +1,18 @@
+.container {
+  box-shadow: var(--primaryBoxShadow);
+  width: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap:35px;
+}
+
+.link {
+  color: var(--primaryTextColor);
+  font-weight: 400;
+  font-style: normal;
+  
+}
